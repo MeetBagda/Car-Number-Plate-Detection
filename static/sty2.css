@@ -1,0 +1,61 @@
+body{
+    text-align: center;
+    font-family: 'Poppins';
+    font-weight: 100;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow-x:hidden;
+    background-color: #9396d1;
+}
+.navbar{
+    width: 100%;
+    display: inline-block;
+    background-color: rgb(44, 44, 44);
+    color: rgb(55, 255, 178);
+    height: -10vw;
+    text-align: center;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+.extracted-image{
+    float: left;
+    margin-left: 5vw;
+    width: 57vw;
+    /* height: 80vh; */
+}
+.plate-number{
+    margin-left: 60vw; 
+    margin-bottom: 74vh;
+}
+.plate-number p{
+    font-size: 2vw;
+    color: rgb(255, 255, 255);
+}
+h3{
+    margin-top: 1.5vh;
+    font-size: 2vw;
+} 
+img{
+    margin-top: 1vh;
+    height: 100%;
+    max-height: 36vw;
+    width: 100%;
+    max-width: 56vw;
+    text-decoration: none;
+    border:0;
+}
+.footer{
+    position : relative;
+    bottom: 0;
+    width: 100%;
+    height: 5vh;
+    font-size: 3.4vh;
+    background-color: rgb(44, 44, 44);
+}
+.footer a{
+    text-decoration: none;
+    color: rgb(55, 255, 178);
+}
+
