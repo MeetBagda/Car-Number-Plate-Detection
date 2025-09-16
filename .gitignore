@@ -210,3 +210,4 @@ $RECYCLE.BIN/
 # Performance and profiling
 *.prof
 *.lprof
+model/custom.weights
