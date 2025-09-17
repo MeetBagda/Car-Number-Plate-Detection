@@ -23,7 +23,7 @@ def crop_and_extract(img, boxes):
         cv2.imwrite('dilation.png', dilation)
 
     try:
-        return process_text_detection('car-plate-extractor', 'dilation.png', 'ap-south-1')
+        return process_text_detection('car-plate-extractor-meet4224-2025', 'dilation.png', 'ap-south-1')
     except Exception as e:
         print(f"AWS Textract error: {e}")
         return "License Plate Detected (OCR service unavailable - please configure AWS credentials)"

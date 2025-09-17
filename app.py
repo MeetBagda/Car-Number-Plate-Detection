@@ -6,6 +6,10 @@ from werkzeug.utils import secure_filename
 from flask import Flask, render_template, request, jsonify, session
 from utils.functions import get_labels, get_prediction, load_model
 from utils.extraction import crop_and_extract
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 config_path = 'model/yolov4-custom.cfg'
 weights_path = 'model/custom.weights'
