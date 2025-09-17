@@ -1,14 +1,22 @@
 import boto3
 from PIL import Image
 import io
+import os
 
 def process_text_detection(bucket, image_name, region):
 
     extractions = dict()
 
+    # Get credentials from environment variables for security
+    aws_access_key_id = os.getenv('AWS_ACCESS_KEY_ID')
+    aws_secret_access_key = os.getenv('AWS_SECRET_ACCESS_KEY')
+    
+    if not aws_access_key_id or not aws_secret_access_key:
+        raise ValueError("AWS credentials not found. Please set AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY environment variables.")
+
     session = boto3.Session(
-        aws_access_key_id = '***************',
-        aws_secret_access_key = '*****************'
+        aws_access_key_id=aws_access_key_id,
+        aws_secret_access_key=aws_secret_access_key
     )
 
     #Get the S3
