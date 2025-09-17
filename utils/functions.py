@@ -21,7 +21,7 @@ def load_model(config_path):
         # load yolov4 model
         net = cv2.dnn.readNet(weights_path, config_path)
         model = cv2.dnn_DetectionModel(net)
-        model.setInputParams(size=(608, 608), scale = 1/ 255)
+        model.setInputParams(size=(416, 416), scale=1/255, swapRB=True)
         print('========== Model Loaded ==========')
         return model
     except Exception as e:

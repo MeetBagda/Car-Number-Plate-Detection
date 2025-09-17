@@ -49,24 +49,50 @@ def predict():
 
     img = Image.open(file_path)
     img = np.array(img)
-    img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    # Convert RGB to BGR for OpenCV
+    img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
 
-    classes, scores, boxes = get_prediction(img, model, 0.4, 0.3)
+    # Try with very low thresholds first for license plate detection
+    classes, scores, boxes = get_prediction(img, model, 0.1, 0.1)
+    print(f"DEBUG: Detection results - Classes: {classes}, Scores: {scores}, Boxes: {len(boxes) if boxes is not None else 0}")
+    
     if(len(boxes) != 0):
-        for box in boxes:
+        print(f"DEBUG: Found {len(boxes)} detections")
+        for i, box in enumerate(boxes):
             (x, y, w, h) = box
+            print(f"DEBUG: Box {i}: x={x}, y={y}, w={w}, h={h}")
+            print(f"DEBUG: Class {i}: {classes[i] if i < len(classes) else 'N/A'}, Score: {scores[i] if i < len(scores) else 'N/A'}")
+            
             img = cv2.rectangle(img, (x, y), (x + w, y + h), (0, 0, 255), 2)
-            text = "{} : {:.2f}".format(labels[classes[0]], scores[0])
+            text_label = "{} : {:.2f}".format(labels[classes[i] if i < len(classes) else 0], scores[i] if i < len(scores) else 0.0)
             
             (w1, h1), _ = cv2.getTextSize(
-                    text, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 1)
+                    text_label, cv2.FONT_HERSHEY_SIMPLEX, 0.7, 1)
             img = cv2.rectangle(img, (x, y - 25), (x + w1, y), (0, 0, 255), -1)
-            img = cv2.putText(img, text, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 1)
+            img = cv2.putText(img, text_label, (x, y - 5), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255,255,255), 1)
 
-
-        cv2.imwrite('static/detection.png', img)
+        # Save the detection image
+        detection_saved = cv2.imwrite('static/detection.png', img)
+        print(f"DEBUG: Detection image saved: {detection_saved}")
+        
+        # Check if file was actually created
+        if os.path.exists('static/detection.png'):
+            print("DEBUG: detection.png file exists")
+        else:
+            print("DEBUG: detection.png file NOT created")
+            
         text = crop_and_extract(file_path, boxes)
     else:
+        print("DEBUG: No license plates detected")
+        # Create a copy of original image even if no detection
+        detection_saved = cv2.imwrite('static/detection.png', img)
+        print(f"DEBUG: Fallback image saved: {detection_saved}")
+        
+        if os.path.exists('static/detection.png'):
+            print("DEBUG: Fallback detection.png file exists")
+        else:
+            print("DEBUG: Fallback detection.png file NOT created")
+            
         text = 'Number Plate not Detected'
     
     if os.path.exists(file_path):
