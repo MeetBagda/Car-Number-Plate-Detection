@@ -437,7 +437,7 @@ root.configure(background='white')
 Tops = Frame(root, bg='blue', pady=1, width=1850, height=90, relief="ridge")
 Tops.grid(row=0, column=0)
 
-Title_Label = Label(Tops, font=('Arial', 20, 'bold'), text="         Number plate detection using Python : PSC Assignment\t\t", pady=9, bg='white', fg='red', justify="center")
+Title_Label = Label(Tops, font=('Arial', 20, 'bold'), text="         Number plate detection using Python \t\t", pady=9, bg='white', fg='red', justify="center")
 Title_Label.grid(row=0, column=0)
 MainFrame = Frame(root, bg='white', pady=2, padx=2, width=1450, height=100, relief="ridge")
 MainFrame.grid(row=1, column=0)
