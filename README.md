@@ -15,6 +15,12 @@ Dockerized flask app can be deployed on **Heroku**, **AWS**, **Google Cloud**, o
 
 ➤ In main page first we upload the image.
 
+![GUI SS1](https://github.com/user-attachments/assets/8386c019-8965-44e3-ae92-2e16874e239a)
+
+
+![GUI SS2](https://github.com/user-attachments/assets/02e868fb-e5ba-4bed-b487-29f750be6524)
+
+
 ![Screenshot 2022-07-13 092843](https://user-images.githubusercontent.com/57898986/178670670-2bafd8f5-83b0-49ed-8ff0-d25bd5cb3c88.png) <br><br>
 
 ➤ On clicking **Detect** image will processed and the number will be extracted.
